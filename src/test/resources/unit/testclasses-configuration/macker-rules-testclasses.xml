@@ -4,7 +4,7 @@
 
   <ruleset name="unit test rules">
 
-    <var name="base" value="org.codehaus.mojo.macker" />
+    <var name="base" value="com.github.benromberg.macker.plugin" />
     <pattern name="classes" class="${base}.classes.**" />
     <pattern name="testclasses" class="${base}.testclasses.**" />
 

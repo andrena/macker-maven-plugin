@@ -7,7 +7,7 @@
     <access-rule>
       <message>JD xml classes must not be used directly (only indirectly by XLST).</message>
       <deny>
-        <from class="org.codehaus.mojo.macker.classes.**" />
+        <from class="com.github.benromberg.macker.plugin.classes.**" />
         <to class="jd.**" />
       </deny>
     </access-rule>

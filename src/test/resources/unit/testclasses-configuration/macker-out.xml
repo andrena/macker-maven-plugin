@@ -5,9 +5,9 @@
         <access-rule-violation severity="error">
             <message>java.sql is so old school, use JPA.</message>
             <from>
-                <full-name>org.codehaus.mojo.macker.testclasses.BadDatabaseClass</full-name>
+                <full-name>com.github.benromberg.macker.plugin.testclasses.BadDatabaseClass</full-name>
                 <class>BadDatabaseClass</class>
-                <package>org.codehaus.mojo.macker.testclasses</package>
+                <package>com.github.benromberg.macker.plugin.testclasses</package>
             </from>
             <to>
                 <full-name>java.sql.SQLException</full-name>
