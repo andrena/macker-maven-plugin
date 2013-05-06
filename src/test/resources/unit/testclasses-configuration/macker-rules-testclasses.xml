@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<macker>
+
+  <ruleset name="unit test rules">
+
+    <var name="base" value="org.codehaus.mojo.macker" />
+    <pattern name="classes" class="${base}.classes.**" />
+    <pattern name="testclasses" class="${base}.testclasses.**" />
+
+    <access-rule>
+      <message>JD xml classes must not be used directly (only indirectly by XLST).</message>
+      <deny>
+        <from pattern="classes" />
+        <to class="jd.**" />
+      </deny>
+    </access-rule>
+
+    <access-rule>
+      <message>java.sql is so old school, use JPA.</message>
+      <deny>
+        <from pattern="testclasses" />
+        <to>
+          <include class="java.sql.**" />
+        </to>
+      </deny>
+    </access-rule>
+
+  </ruleset>
+
+</macker>

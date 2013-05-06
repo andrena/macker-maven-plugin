@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>def.configuration</groupId>
+  <artifactId>default-configuration</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>Maven Macker Plugin Test</name>
+
+  <build>
+    <finalName>testclasses-configuration</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>macker-maven-plugin</artifactId>
+        <configuration>
+          <!-- BEGIN default values set by Maven mechanism -->
+          <project implementation="org.codehaus.mojo.macker.stubs.ProjectStub" />
+          <classesDirectory>target/test/unit/target/classes</classesDirectory>
+          <testClassesDirectory>target/test/unit/target/test-classes</testClassesDirectory>
+          <outputDirectory>target/test/unit/target</outputDirectory>
+          <outputName>macker-out.xml</outputName>
+          <maxmsg>0</maxmsg>
+          <verbose>false</verbose>
+          <failOnError>true</failOnError>
+          <skip>false</skip>
+          <maxmem>64m</maxmem>
+          <pluginClasspathList implementation="org.codehaus.mojo.macker.stubs.ClasspathArtifactListStub" />
+          <quiet>false</quiet>
+          <resolver implementation="org.codehaus.mojo.macker.stubs.NullArtifactResolver" />
+          <!-- END default values set by Maven mechanism -->
+          <includeTests>true</includeTests>
+          <rulesDirectory>src/test/resources/unit/testclasses-configuration</rulesDirectory>
+          <rule>macker-rules-testclasses.xml</rule>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<macker-report>
+    <timestamp>Sun Apr 25 01:23:20 CEST 2010</timestamp>
+    <ruleset name="failing rules">
+        <access-rule-violation severity="error">
+            <message>Math classes must not be used.</message>
+            <from>
+                <full-name>example.SimpleClass</full-name>
+                <class>SimpleClass</class>
+                <package>example</package>
+            </from>
+            <to>
+                <full-name>java.lang.Math</full-name>
+                <class>Math</class>
+                <package>java.lang</package>
+            </to>
+        </access-rule-violation>
+    </ruleset>
+</macker-report>
+

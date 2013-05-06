@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<macker-report>
+    <timestamp>Sun Apr 25 01:23:20 CEST 2010</timestamp>
+    <ruleset name="failing rules">
+        <access-rule-violation severity="error">
+            <message>java.security classes must only be used inside util.crypt packages.</message>
+            <from>
+                <full-name>org.codehaus.mojo.macker.classes.ForbiddenReference</full-name>
+                <class>ForbiddenReference</class>
+                <package>org.codehaus.mojo.macker.classes</package>
+            </from>
+            <to>
+                <full-name>java.security.InvalidParameterException</full-name>
+                <class>InvalidParameterException</class>
+                <package>java.security</package>
+            </to>
+        </access-rule-violation>
+    </ruleset>
+    <ruleset name="unit test rules">
+        <access-rule-violation severity="error">
+            <message>java.sql is so old school, use JPA.</message>
+            <from>
+                <full-name>org.codehaus.mojo.macker.testclasses.BadDatabaseClass</full-name>
+                <class>BadDatabaseClass</class>
+                <package>org.codehaus.mojo.macker.testclasses</package>
+            </from>
+            <to>
+                <full-name>java.sql.SQLException</full-name>
+                <class>SQLException</class>
+                <package>java.sql</package>
+            </to>
+        </access-rule-violation>
+    </ruleset>
+</macker-report>
+

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<macker>
+
+  <ruleset name="failing rules">
+
+    <!-- <var name="base" value="org.codehaus.mojo.macker" />  -->
+    <pattern name="classes" class="${base}.classes.**" />
+
+    <access-rule>
+      <message>JD xml classes must not be used directly (only indirectly by XLST).</message>
+      <deny>
+        <from pattern="classes" />
+        <to class="jd.**" />
+      </deny>
+    </access-rule>
+
+    <access-rule>
+      <message>java.security classes must only be used inside util.crypt packages.</message>
+      <deny>
+        <from pattern="classes" />
+        <to>
+          <include class="java.security.**" />
+        </to>
+      </deny>
+    </access-rule>
+
+  </ruleset>
+
+</macker>

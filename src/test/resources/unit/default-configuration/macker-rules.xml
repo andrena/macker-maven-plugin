@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<macker>
+
+  <ruleset name="default rules">
+
+    <access-rule>
+      <message>JD xml classes must not be used directly (only indirectly by XLST).</message>
+      <deny>
+        <from class="org.codehaus.mojo.macker.classes.**" />
+        <to class="jd.**" />
+      </deny>
+    </access-rule>
+
+  </ruleset>
+
+</macker>

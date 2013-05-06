@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<macker>
+
+  <ruleset name="failing rules">
+
+    <access-rule>
+      <message>Math classes must not be used.</message>
+      <deny>
+        <from class="example.**" />
+        <to class="java.lang.Math" />
+      </deny>
+    </access-rule>
+
+  </ruleset>
+
+</macker>

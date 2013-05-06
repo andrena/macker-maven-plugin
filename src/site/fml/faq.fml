@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<!--
+   - Licensed to the Apache Software Foundation (ASF) under one
+   - or more contributor license agreements.  See the NOTICE file
+   - distributed with this work for additional information
+   - regarding copyright ownership.  The ASF licenses this file
+   - to you under the Apache License, Version 2.0 (the
+   - "License"); you may not use this file except in compliance
+   - with the License.  You may obtain a copy of the License at
+   -
+   -      http://www.apache.org/licenses/LICENSE-2.0
+   -
+   - Unless required by applicable law or agreed to in writing,
+   - software distributed under the License is distributed on an
+   - "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   - KIND, either express or implied.  See the License for the
+   - specific language governing permissions and limitations
+   - under the License.
+  -->
+
+<faqs id="FAQ" title="Frequently Asked Questions">
+ <part id="General">
+   <faq id="info">
+     <question>Where can I get more information about Macker?</question>
+     <answer>
+       <p>
+         The <a href="http://www.innig.net/macker/guide/index.html">Macker documentation</a> is a good place to start.
+       </p>
+     </answer>
+   </faq>
+   <faq id="execution">
+     <question>How do I run the Macker plugin?</question>
+     <answer>
+       <p>Bind the plugin to goal macker and phase compile. Or from the command line, run:
+       </p>
+       <p>
+<code>
+  mvn macker:macker test
+</code>
+       </p>
+     </answer>
+   </faq>
+   <faq id="tests">
+     <question>Can I run Macker on my test classes?</question>
+     <answer>
+       <p>
+         Yes, set the <code>includeTests</code> parameter to <code>true</code>.
+       </p>
+     </answer>
+   </faq>
+   <faq id="skip">
+     <question>
+        Is there any way to skip the Macker check temporarily?
+     </question>
+     <answer>
+        <p>
+          Yes, it supports a skip parameter which you can pass on the
+          command line, <code>-Dmacker.skip=true</code>.
+        </p>
+    </answer>
+   </faq>
+   <faq id="output">
+     <question>
+        How to I manage Macker output?
+     </question>
+     <answer>
+        <p>
+          First turn <code>verbose</code> of if you have it enabled. 
+          Next limit the number of messages displayed with the <code>maxmsg</code> parameter.
+          Use <code>quiet</code> to disable all other log messages. 
+        </p>
+    </answer>
+   </faq>
+ </part>
+</faqs>
