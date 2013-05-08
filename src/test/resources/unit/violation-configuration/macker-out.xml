@@ -5,9 +5,9 @@
         <access-rule-violation severity="error">
             <message>java.security classes must only be used inside util.crypt packages.</message>
             <from>
-                <full-name>com.github.benromberg.macker.plugin.classes.ForbiddenReference</full-name>
+                <full-name>de.andrena.tools.macker.plugin.classes.ForbiddenReference</full-name>
                 <class>ForbiddenReference</class>
-                <package>com.github.benromberg.macker.plugin.classes</package>
+                <package>de.andrena.tools.macker.plugin.classes</package>
             </from>
             <to>
                 <full-name>java.security.InvalidParameterException</full-name>

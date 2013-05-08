@@ -12,11 +12,11 @@
     <finalName>default-configuration</finalName>
     <plugins>
       <plugin>
-        <groupId>com.github.benromberg.macker</groupId>
+        <groupId>de.andrena.tools.macker</groupId>
         <artifactId>macker-maven-plugin</artifactId>
         <configuration>
           <!-- BEGIN default values set by Maven mechanism -->
-          <project implementation="com.github.benromberg.macker.plugin.stubs.ProjectStub" />
+          <project implementation="de.andrena.tools.macker.plugin.stubs.ProjectStub" />
           <classesDirectory>target/test/unit/target/classes</classesDirectory>
           <testClassesDirectory>target/test/unit/target/test-classes</testClassesDirectory>
           <rulesDirectory>src/main/config</rulesDirectory>
@@ -28,9 +28,9 @@
           <failOnError>true</failOnError>
           <skip>false</skip>
           <maxmem>64m</maxmem>
-          <pluginClasspathList implementation="com.github.benromberg.macker.plugin.stubs.ClasspathArtifactListStub" />
+          <pluginClasspathList implementation="de.andrena.tools.macker.plugin.stubs.ClasspathArtifactListStub" />
           <quiet>false</quiet>
-          <resolver implementation="com.github.benromberg.macker.plugin.stubs.NullArtifactResolver" />
+          <resolver implementation="de.andrena.tools.macker.plugin.stubs.NullArtifactResolver" />
           <!-- END default values set by Maven mechanism -->
           <includeTests>true</includeTests>
           <rules>

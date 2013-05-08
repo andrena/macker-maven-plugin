@@ -4,7 +4,7 @@
 
   <ruleset name="failing rules">
 
-    <var name="base" value="com.github.benromberg.macker.plugin" />
+    <var name="base" value="de.andrena.tools.macker.plugin" />
     <pattern name="classes" class="${base}.classes.**" />
 
     <access-rule>

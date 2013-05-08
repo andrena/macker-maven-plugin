@@ -58,7 +58,7 @@ Maven 2 Macker Plugin - How to Use
 <build>
   [...]
   <plugin>
-    <groupId>com.github.benromberg.macker</groupId>
+    <groupId>de.andrena.tools.macker</groupId>
       <artifactId>macker-maven-plugin</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <configuration>
@@ -105,7 +105,7 @@ Maven 2 Macker Plugin - How to Use
 -------------------
 <build>
   <plugin>
-    <groupId>com.github.benromberg.macker</groupId>
+    <groupId>de.andrena.tools.macker</groupId>
       <artifactId>macker-maven-plugin</artifactId>
       <configuration>
         [...]

@@ -37,7 +37,7 @@ Maven 2 Macker Plugin - A Simple Example
 <?xml version="1.0"?>
 <macker>    
     <ruleset name="Testing rules">
-        <pattern name="mypackage" class="com.github.benromberg.macker.**" />
+        <pattern name="mypackage" class="de.andrena.tools.macker.**" />
         <access-rule>
             <message>System out is bad. Use logging instead.</message>
             <deny>
@@ -75,7 +75,7 @@ Save this into a file named <<<macker-rules.xml>>>. This file should be located 
   <build>
     <plugins>
       <plugin>
-        <groupId>com.github.benromberg.macker</groupId>
+        <groupId>de.andrena.tools.macker</groupId>
         <artifactId>macker-maven-plugin</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <executions>
