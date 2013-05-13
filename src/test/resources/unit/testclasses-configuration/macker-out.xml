@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <macker-report>
-    <timestamp>Sun Apr 25 01:23:20 CEST 2010</timestamp>
-    <ruleset name="unit test rules">
-        <access-rule-violation severity="error">
-            <message>java.sql is so old school, use JPA.</message>
-            <from>
-                <full-name>de.andrena.tools.macker.plugin.testclasses.BadDatabaseClass</full-name>
-                <class>BadDatabaseClass</class>
-                <package>de.andrena.tools.macker.plugin.testclasses</package>
-            </from>
-            <to>
-                <full-name>java.sql.SQLException</full-name>
-                <class>SQLException</class>
-                <package>java.sql</package>
-            </to>
-        </access-rule-violation>
-    </ruleset>
+  <timestamp>Sun Apr 25 01:23:20 CEST 2010</timestamp>
+  <ruleset name="unit test rules">
+    <access-rule-violation severity="error">
+      <message>java.sql is so old school, use JPA.</message>
+      <from>
+        <full-name>de.andrena.tools.macker.plugin.testclasses.BadDatabaseClass</full-name>
+        <class>BadDatabaseClass</class>
+        <package>de.andrena.tools.macker.plugin.testclasses</package>
+      </from>
+      <to>
+        <full-name>java.sql.SQLException</full-name>
+        <class>SQLException</class>
+        <package>java.sql</package>
+      </to>
+    </access-rule-violation>
+  </ruleset>
 </macker-report>
 

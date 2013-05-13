@@ -1,182 +1,134 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>de.andrena.tools.macker</groupId>
-  <artifactId>macker-maven-plugin</artifactId>
-  <packaging>maven-plugin</packaging>
-  <version>1.0.0-SNAPSHOT</version>
-  <name>Macker Maven Plugin</name>
-  <url>http://mojo.codehaus.org/macker-maven-plugin</url>
-  <inceptionYear>2007</inceptionYear>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <organization>
-    <name>CodeHaus</name>
-    <url>http://www.codehaus.org</url>
-  </organization>
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
 
-  <prerequisites>
-    <maven>2.0</maven>
-  </prerequisites>
+	<groupId>de.andrena.tools.macker</groupId>
+	<artifactId>macker-maven-plugin</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>maven-plugin</packaging>
 
-  <description>
-    This plugin executes the Macker architectural rule checking utility against a project's compiled Java code.
-  </description>
+	<name>Macker Maven Plugin</name>
+	<description>This plugin executes the Macker architectural rule checking utility against a project's compiled Java code.</description>
 
-  <scm>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/sandbox/macker-maven-plugin</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/sandbox/macker-maven-plugin</developerConnection>
-    <url>http://svn.codehaus.org/mojo/trunk/sandbox/macker-maven-plugin</url>
-  </scm>
+	<url>https://github.com/andrena/macker-maven-plugin</url>
+	<scm>
+		<connection>scm:git:git@github.com:andrena/macker-maven-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:andrena/macker-maven-plugin.git</developerConnection>
+		<url>git@github.com:andrena/macker-maven-plugin.git</url>
+	</scm>
 
-  <issueManagement>
-    <system>JIRA</system>
-    <url>http://jira.codehaus.org/browse/MOJO</url>
-  </issueManagement>
-  
-  <developers>
-    <developer>
-      <id>wf</id>
-      <name>Wayne Fay</name>
-      <email>wfay@codehaus.org</email>
-      <url>http://codehaus.org/~wfay/</url>
-      <organization />
-      <roles>
-        <role>Documentation</role>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>-5</timezone>
-    </developer>
-    <developer>
-      <id>bellingard</id>
-      <name>Fabrice Bellingard</name>
-      <email>bellingard@apache.org</email>
-      <url>http://people.apache.org/~bellingard/</url>
-      <organization>ASF</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>+1</timezone>
-    </developer>
-  </developers>
-  
-  <contributors>
-    <contributor>
-      <name>Paul Cantrell</name>
-      <email>cantrell@pobox.com</email>
-      <url>http://www.innig.net</url>
-      <organization />
-      <roles>
-        <role>Macker Creator</role>
-      </roles>
-      <timezone />
-    </contributor>
-    <contributor>
-      <name>Remy Sanlaville</name>
-      <email>remy.sanlaville@gmail.com</email>
-      <url />
-      <organization />
-      <roles />
-      <timezone />
-    </contributor>
-    <contributor>
-      <name>Peter Kofler</name>
-      <email>peter dot kofler at code-cop dot org</email>
-      <url>http://www.code-cop.org</url>
-      <organization>Code Cop</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
-      <timezone>+1</timezone>
-    </contributor>
-    <contributor>
-      <!-- dkulp -->
-      <name>J. Daniel Kulp</name>
-      <email>dkulp at apache dot org</email>
-      <organization>ASF</organization>
-      <roles>
-        <role>Maven PMD Plugin Developer (extended configuration)</role>
-      </roles>
-    </contributor>
-    <contributor>
-      <name>Benjamin Bentmann</name>
-      <roles>
-        <role>Maven PMD Plugin Developer (extended configuration)</role>
-      </roles>
-    </contributor>
-    <contributor>
-      <!-- fgiust -->
-      <name>Fabrizio Giustina</name>
-      <email>fgiust at apache dot org</email>
-      <organization>ASF</organization>
-      <roles>
-        <role>Maven Cobertura Plugin Developer (forking logic)</role>
-      </roles>
-    </contributor>
-    <contributor>
-      <!-- aheritier -->
-      <name>Arnaud Heritier</name>
-      <email>aheritier at apache dot org</email>
-      <organization>ASF</organization>
-      <roles>
-        <role>Maven Cobertura Plugin Despot (forking logic)</role>
-        <role>Maven Eclipse Plugin Developer (abstract integration testcase)</role>
-      </roles>
-    </contributor>
-    <contributor>
-      <!-- baerrach -->
-      <name>Barrie Treloar</name>
-      <email>baerrach at apache dot org</email>
-      <organization>ASF</organization>
-      <roles>
-        <role>Maven Eclipse Plugin Developer (abstract integration testcase)</role>
-      </roles>
-    </contributor>
-  </contributors>
-  
-  <licenses>
-    <license>
-      <name>Apache License 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-  
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <version>2.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-project</artifactId>
-      <version>2.0</version>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-       <groupId>org.codehaus.plexus</groupId>
-       <artifactId>plexus-utils</artifactId>
-       <version>1.5.6</version>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-resources</artifactId>
-      <version>1.0-alpha-7</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>1.3</version>
-    </dependency>
-    <!-- Macker dependencies, only used for forking -->
-    <dependency>
+	<developers>
+		<developer>
+			<name>Wayne Fay</name>
+			<email>wfay@codehaus.org</email>
+			<url>http://codehaus.org/~wfay/</url>
+			<roles>
+				<role>Documentation</role>
+				<role>Java Developer</role>
+			</roles>
+			<timezone>-5</timezone>
+		</developer>
+		<developer>
+			<name>Fabrice Bellingard</name>
+			<email>bellingard@apache.org</email>
+			<url>http://people.apache.org/~bellingard/</url>
+			<organization>ASF</organization>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+
+	<contributors>
+		<contributor>
+			<name>Paul Cantrell</name>
+			<email>cantrell@pobox.com</email>
+			<url>http://www.innig.net</url>
+			<roles>
+				<role>Macker Creator</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Remy Sanlaville</name>
+			<email>remy.sanlaville@gmail.com</email>
+		</contributor>
+		<contributor>
+			<name>Peter Kofler</name>
+			<email>peter dot kofler at code-cop dot org</email>
+			<url>http://www.code-cop.org</url>
+			<organization>Code Cop</organization>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</contributor>
+		<contributor>
+			<name>J. Daniel Kulp</name>
+			<email>dkulp at apache dot org</email>
+			<organization>ASF</organization>
+			<roles>
+				<role>Maven PMD Plugin Developer (extended configuration)</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Benjamin Bentmann</name>
+			<roles>
+				<role>Maven PMD Plugin Developer (extended configuration)</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Fabrizio Giustina</name>
+			<email>fgiust at apache dot org</email>
+			<organization>ASF</organization>
+			<roles>
+				<role>Maven Cobertura Plugin Developer (forking logic)</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Arnaud Heritier</name>
+			<email>aheritier at apache dot org</email>
+			<organization>ASF</organization>
+			<roles>
+				<role>Maven Cobertura Plugin Despot (forking logic)</role>
+				<role>Maven Eclipse Plugin Developer (abstract integration testcase)</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Barrie Treloar</name>
+			<email>baerrach at apache dot org</email>
+			<organization>ASF</organization>
+			<roles>
+				<role>Maven Eclipse Plugin Developer (abstract integration testcase)</role>
+			</roles>
+		</contributor>
+	</contributors>
+
+	<licenses>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<dependencies>
+		 <dependency>
       <groupId>innig</groupId>
       <artifactId>macker</artifactId>
       <version>0.4.2</version>
+    </dependency>
+    
+		 <dependency>
+     <groupId>de.andrena.tools.macker</groupId>
+	<artifactId>macker</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>innig</groupId>
@@ -186,7 +138,7 @@
     <dependency>
       <groupId>org.apache.bcel</groupId>
       <artifactId>bcel</artifactId>
-      <version>5.2</version> 
+      <version>5.2</version>
     </dependency>
     <dependency>
       <groupId>commons-lang</groupId>
@@ -206,7 +158,7 @@
     <dependency>
       <groupId>jdom</groupId>
       <artifactId>jdom</artifactId>
-      <version>1.0b8</version>
+      <version>1.0</version>
     </dependency>
     <dependency>
       <groupId>xalan</groupId>
@@ -223,131 +175,163 @@
       <artifactId>xmlParserAPIs</artifactId>
       <version>2.6.2</version>
     </dependency>
-    <!-- Test dependencies -->
-    <dependency>
-      <groupId>org.apache.maven.plugin-testing</groupId>
-      <artifactId>maven-test-tools</artifactId>
-      <version>1.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven.plugin-testing</groupId>
-      <artifactId>maven-plugin-testing-harness</artifactId>
-      <version>1.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven.plugin-testing</groupId>
-      <artifactId>maven-plugin-testing-tools</artifactId>
-      <version>1.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>xmlunit</groupId>
-      <artifactId>xmlunit</artifactId>
-      <version>1.3</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-  
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-docck-plugin</artifactId>
-        <version>1.0</version>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>failsafe-maven-plugin</artifactId>
-        <version>2.4.3-alpha-1</version>
-        <executions>
-          <execution>
-            <id>integration-test</id>
-            <goals>
-              <goal>integration-test</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>verify</id>
-            <goals>
-              <goal>verify</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-  
-  <profiles>
-    <profile>
-      <id>failsafe-runnung-it</id>
-      <build>
-        <!-- skip test resources to speed up things -->
-        <testResources>
-          <testResource>
-            <directory>src/test/resources</directory>
-            <excludes>
-              <exclude>**/*</exclude>
-            </excludes>
-          </testResource>
-        </testResources>
-        <pluginManagement>
-          <plugins>
-            <!-- skip test compile to speed up things -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-compiler-plugin</artifactId>
-              <configuration>
-                <skip>true</skip>
-              </configuration>
-            </plugin>
-            <!-- FIXME: copied from maven-eclipse-plugin -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-plugin-plugin</artifactId>
-              <!-- lock down to old version as newer version aborts build upon no mojos as required during ITs, see below -->
-              <version>2.4.3</version>
-              <executions>
-                <!-- disable execution, makes IT preparation using maven-plugin-testing-tools fail (see target/test-build-logs/setup.build.log) -->
-                <execution>
-                  <id>help-mojo</id>
-                  <configuration>
-                    <extractors>
-                      <extractor />
-                    </extractors>
-                  </configuration>
-                </execution>
-              </executions>
-            </plugin>
-            <!-- maven-plugin-testing-tools do not handle Failsafe Plugin -->
-            <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>failsafe-maven-plugin</artifactId>
-              <version>2.4.3-alpha-1</version>
-              <configuration>
-                <skipTests>true</skipTests>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
-      <activation>
-        <property>
-          <name>maven-plugin-testing-tools:ProjectTool:packageProjectArtifact</name>
-        </property>
-      </activation>
-    </profile>
-  </profiles>
-  
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>1.1.1</version>
-        <configuration />
-      </plugin>
-    </plugins>
-  </reporting>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-project</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.plexus</groupId>
+			<artifactId>plexus-utils</artifactId>
+			<version>1.5.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.plexus</groupId>
+			<artifactId>plexus-resources</artifactId>
+			<version>1.0-alpha-7</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugin-testing</groupId>
+			<artifactId>maven-test-tools</artifactId>
+			<version>1.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugin-testing</groupId>
+			<artifactId>maven-plugin-testing-harness</artifactId>
+			<version>1.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugin-testing</groupId>
+			<artifactId>maven-plugin-testing-tools</artifactId>
+			<version>1.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>xmlunit</groupId>
+			<artifactId>xmlunit</artifactId>
+			<version>1.3</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-docck-plugin</artifactId>
+				<version>1.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>failsafe-maven-plugin</artifactId>
+				<version>2.4.3-alpha-1</version>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>failsafe-runnung-it</id>
+			<build>
+				<!-- skip test resources to speed up things -->
+				<testResources>
+					<testResource>
+						<directory>src/test/resources</directory>
+						<excludes>
+							<exclude>**/*</exclude>
+						</excludes>
+					</testResource>
+				</testResources>
+				<pluginManagement>
+					<plugins>
+						<!-- skip test compile to speed up things -->
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-compiler-plugin</artifactId>
+							<configuration>
+								<skip>true</skip>
+							</configuration>
+						</plugin>
+						<!-- FIXME: copied from maven-eclipse-plugin -->
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-plugin-plugin</artifactId>
+							<!-- lock down to old version as newer version aborts build upon no 
+								mojos as required during ITs, see below -->
+							<version>2.4.3</version>
+							<executions>
+								<!-- disable execution, makes IT preparation using maven-plugin-testing-tools 
+									fail (see target/test-build-logs/setup.build.log) -->
+								<execution>
+									<id>help-mojo</id>
+									<configuration>
+										<extractors>
+											<extractor />
+										</extractors>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+						<!-- maven-plugin-testing-tools do not handle Failsafe Plugin -->
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>failsafe-maven-plugin</artifactId>
+							<version>2.4.3-alpha-1</version>
+							<configuration>
+								<skipTests>true</skipTests>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+			<activation>
+				<property>
+					<name>maven-plugin-testing-tools:ProjectTool:packageProjectArtifact</name>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>1.1.1</version>
+				<configuration />
+			</plugin>
+		</plugins>
+	</reporting>
 </project>
