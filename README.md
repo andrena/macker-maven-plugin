@@ -29,7 +29,7 @@ Usage:
 </build>
 ```
 
-Some examples for macker-rules.xml (more sophisticated examples are available on the [original Macker project page](http://innig.net/macker/guide/): 
+Some examples for macker-rules.xml (more sophisticated examples are available on the [original Macker project page](http://innig.net/macker/guide/)): 
 
 If you don’t want any classes from your persistence layer to reference any of your application-logic classes (which is usually the case), you can define the following Rule-Set:
 ```xml
