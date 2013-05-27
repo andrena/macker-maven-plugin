@@ -12,7 +12,7 @@ Usage:
   <plugin>
     <groupId>de.andrena.tools.macker</groupId>
       <artifactId>macker-maven-plugin</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
       <configuration>
         <rule>macker-rules.xml</rule>
       </configuration>
