@@ -9,7 +9,7 @@
 
 	<groupId>de.andrena.tools.macker</groupId>
 	<artifactId>macker-maven-plugin</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>Macker Maven Plugin</name>
