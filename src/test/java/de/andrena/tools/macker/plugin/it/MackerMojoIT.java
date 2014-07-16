@@ -31,17 +31,17 @@ package de.andrena.tools.macker.plugin.it;
  * @author <a href="mailto:fgiust@apache.org">Fabrizio Giustina</a>
  */
 public class MackerMojoIT
-    extends AbstractMackerPluginITCase
+        extends AbstractMackerPluginITCase
 {
 
     public void testBasic()
-        throws Exception
+            throws Exception
     {
         testProject( "basic", "clean,test" );
     }
 
     public void testFail()
-        throws Exception
+            throws Exception
     {
         testProject( "fail", "clean,test" );
     }

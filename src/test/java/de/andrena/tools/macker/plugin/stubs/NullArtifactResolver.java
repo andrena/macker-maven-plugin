@@ -26,7 +26,7 @@ import org.apache.maven.plugin.testing.stubs.StubArtifactResolver;
  * @author <a href="http://www.code-cop.org/">Peter Kofler</a>
  */
 public class NullArtifactResolver
-    extends StubArtifactResolver
+        extends StubArtifactResolver
 {
 
     public NullArtifactResolver()

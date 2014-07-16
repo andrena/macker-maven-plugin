@@ -19,23 +19,24 @@ package de.andrena.tools.macker.plugin.stubs;
  * under the License.
  */
 
-import org.apache.maven.model.Build;
-import org.apache.maven.plugin.testing.stubs.ArtifactStub;
-import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.model.Build;
+import org.apache.maven.plugin.testing.stubs.ArtifactStub;
+import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
 
 /**
  * The mock project needed for Macker MOJO unit tests.
  * @author <a href="http://www.code-cop.org/">Peter Kofler</a>
  */
 public class ProjectStub
-    extends MavenProjectStub
+        extends MavenProjectStub
 {
     private static final String TEST_PROJECT_BASE_DIR = "target/test/unit";
-    private Map/*<String, Artifact>*/pluginArtifactMap = new HashMap/*<String, Artifact>*/();
+    private Map<String, Artifact> pluginArtifactMap = new HashMap<String, Artifact>();
 
     public ProjectStub()
     {
@@ -44,7 +45,7 @@ public class ProjectStub
 
         // mock the build for the ResourceManager's outputDirectory
         Build build = new Build();
-        build.setDirectory( getBasedir() + File.separator + (TEST_PROJECT_BASE_DIR + "/target/") );
+        build.setDirectory( getBasedir() + File.separator + ( TEST_PROJECT_BASE_DIR + "/target/" ) );
         setBuild( build );
 
         // mock the artifact for the language handler check
@@ -53,6 +54,7 @@ public class ProjectStub
         // mock specific plugin (which is this plugin) in the map to get its classpath for forking
         getPluginArtifactMap().put( "de.andrena.tools.macker:macker-maven-plugin", new ArtifactStub()
         {
+            @Override
             public File getFile()
             {
                 return new File( "target/classes" );
@@ -60,12 +62,14 @@ public class ProjectStub
         } );
     }
 
-    public Map/*<String, Artifact>*/getPluginArtifactMap()
+    @Override
+    public Map<String, Artifact> getPluginArtifactMap()
     {
         return pluginArtifactMap;
     }
 
-    public void setPluginArtifactMap( Map/*<String, Artifact>*/pluginArtifactMap )
+    @Override
+    public void setPluginArtifactMap(Map pluginArtifactMap)
     {
         this.pluginArtifactMap = pluginArtifactMap;
     }

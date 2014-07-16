@@ -19,6 +19,15 @@ package org.apache.maven.shared.test.plugin;
  * under the License.
  */
 
+import java.io.File;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.factory.ArtifactFactory;
 import org.apache.maven.artifact.handler.ArtifactHandler;
@@ -39,16 +48,6 @@ import org.apache.maven.project.MavenProject;
 import org.apache.maven.project.MavenProjectBuilder;
 import org.apache.maven.project.ProjectBuildingException;
 import org.apache.maven.project.artifact.ProjectArtifactMetadata;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
-
 import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.IOUtil;
 import org.codehaus.plexus.util.ReaderFactory;
@@ -115,8 +114,8 @@ public class ProjectTool
      * @return the Maven project from a file
      * @throws TestToolsException if any
      */
-    public MavenProject readProject( File pomFile )
-        throws TestToolsException
+    public MavenProject readProject(File pomFile)
+            throws TestToolsException
     {
         return readProject( pomFile, repositoryTool.findLocalRepositoryDirectory() );
     }
@@ -130,13 +129,12 @@ public class ProjectTool
      * @return the Maven project from a file and a local repo
      * @throws TestToolsException if any
      */
-    public MavenProject readProject( File pomFile, File localRepositoryBasedir )
-        throws TestToolsException
+    public MavenProject readProject(File pomFile, File localRepositoryBasedir)
+            throws TestToolsException
     {
         try
         {
-            ArtifactRepository localRepository = repositoryTool
-                .createLocalArtifactRepositoryInstance( localRepositoryBasedir );
+            ArtifactRepository localRepository = repositoryTool.createLocalArtifactRepositoryInstance( localRepositoryBasedir );
 
             return projectBuilder.build( pomFile, localRepository, null );
         }
@@ -153,8 +151,8 @@ public class ProjectTool
      * @return the Maven project with dependencies from a file
      * @throws TestToolsException if any
      */
-    public MavenProject readProjectWithDependencies( File pomFile )
-        throws TestToolsException
+    public MavenProject readProjectWithDependencies(File pomFile)
+            throws TestToolsException
     {
         return readProjectWithDependencies( pomFile, repositoryTool.findLocalRepositoryDirectory() );
     }
@@ -168,13 +166,12 @@ public class ProjectTool
      * @return the Maven project with dependencies from a file and a local repo
      * @throws TestToolsException if any
      */
-    public MavenProject readProjectWithDependencies( File pomFile, File localRepositoryBasedir )
-        throws TestToolsException
+    public MavenProject readProjectWithDependencies(File pomFile, File localRepositoryBasedir)
+            throws TestToolsException
     {
         try
         {
-            ArtifactRepository localRepository = repositoryTool
-                .createLocalArtifactRepositoryInstance( localRepositoryBasedir );
+            ArtifactRepository localRepository = repositoryTool.createLocalArtifactRepositoryInstance( localRepositoryBasedir );
 
             return projectBuilder.buildWithDependencies( pomFile, localRepository, null );
         }
@@ -211,8 +208,8 @@ public class ProjectTool
      *   have been appropriately configured.
      * @throws TestToolsException if any
      */
-    public MavenProject packageProjectArtifact( File pomFile, String testVersion, boolean skipUnitTests )
-        throws TestToolsException
+    public MavenProject packageProjectArtifact(File pomFile, String testVersion, boolean skipUnitTests)
+            throws TestToolsException
     {
         return packageProjectArtifact( pomFile, testVersion, skipUnitTests, null );
     }
@@ -238,8 +235,8 @@ public class ProjectTool
      *   have been appropriately configured.
      * @throws TestToolsException if any
      */
-    public MavenProject packageProjectArtifact( File pomFile, String testVersion, boolean skipUnitTests, File logFile )
-        throws TestToolsException
+    public MavenProject packageProjectArtifact(File pomFile, String testVersion, boolean skipUnitTests, File logFile)
+            throws TestToolsException
     {
         PomInfo pomInfo = manglePomForTesting( pomFile, testVersion, skipUnitTests );
 
@@ -247,7 +244,7 @@ public class ProjectTool
         // insert the test property to activate the test profile
         properties.put( "maven-plugin-testing-tools:ProjectTool:packageProjectArtifact", Boolean.TRUE.toString() );
 
-        List goals = new ArrayList();
+        List<String> goals = new ArrayList<String>();
         goals.add( "clean" ); // added to be sure
         goals.add( "package" );
 
@@ -257,14 +254,12 @@ public class ProjectTool
         buildTool.executeMaven( pomInfo.getPomFile(), properties, goals, buildLog );
 
         File artifactFile = new File( pomInfo.getPomFile().getParentFile(), pomInfo.getBuildDirectory() + "/" + pomInfo.getFinalName() );
-        System.out.println("Using IT Plugin Jar: "+artifactFile.getAbsolutePath());
+        System.out.println( "Using IT Plugin Jar: " + artifactFile.getAbsolutePath() );
         try
         {
-            MavenProject project = projectBuilder.build( pomInfo.getPomFile(), repositoryTool
-                .createLocalArtifactRepositoryInstance(), null );
+            MavenProject project = projectBuilder.build( pomInfo.getPomFile(), repositoryTool.createLocalArtifactRepositoryInstance(), null );
 
-            Artifact artifact = artifactFactory.createArtifact( project.getGroupId(), project.getArtifactId(), project
-                .getVersion(), null, project.getPackaging() );
+            Artifact artifact = artifactFactory.createArtifact( project.getGroupId(), project.getArtifactId(), project.getVersion(), null, project.getPackaging() );
 
             artifact.setFile( artifactFile );
             artifact.addMetadata( new ProjectArtifactMetadata( artifact, project.getFile() ) );
@@ -275,9 +270,7 @@ public class ProjectTool
         }
         catch ( ProjectBuildingException e )
         {
-            throw new TestToolsException(
-                                          "Error building MavenProject instance from test pom: " + pomInfo.getPomFile(),
-                                          e );
+            throw new TestToolsException( "Error building MavenProject instance from test pom: " + pomInfo.getPomFile(), e );
         }
     }
 
@@ -293,8 +286,8 @@ public class ProjectTool
      * @return Information about mangled POM, including the temporary file to which it was written.
      * @throws TestToolsException if any
      */
-    protected PomInfo manglePomForTesting( File pomFile, String testVersion, boolean skipUnitTests )
-        throws TestToolsException
+    protected PomInfo manglePomForTesting(File pomFile, String testVersion, boolean skipUnitTests)
+            throws TestToolsException
     {
         File input = pomFile;
 
@@ -343,10 +336,10 @@ public class ProjectTool
                 buildDirectory = "target";
             }
 
-            buildDirectory = buildDirectory+File.separatorChar+"it-build-target";
+            buildDirectory = buildDirectory + File.separatorChar + "it-build-target";
             build.setDirectory( buildDirectory );
-            build.setOutputDirectory( buildDirectory+File.separatorChar+"classes" );
-            System.out.println("Using "+build.getDirectory()+" and "+build.getOutputDirectory()+" to build IT version of plugin");
+            build.setOutputDirectory( buildDirectory + File.separatorChar + "classes" );
+            System.out.println( "Using " + build.getDirectory() + " and " + build.getOutputDirectory() + " to build IT version of plugin" );
             model.setBuild( build );
 
             finalName = build.getFinalName();
@@ -367,7 +360,7 @@ public class ProjectTool
             deployRepo.setId( "integration-test.output" );
 
             File tmpDir = FileUtils.createTempFile( "integration-test-repo", "", null );
-            String tmpUrl = tmpDir.toURL().toExternalForm();
+            String tmpUrl = tmpDir.toURI().toURL().toExternalForm();
 
             deployRepo.setUrl( tmpUrl );
 
@@ -378,7 +371,7 @@ public class ProjectTool
             localAsRemote.setId( "testing.mainLocalAsRemote" );
 
             File localRepoDir = repositoryTool.findLocalRepositoryDirectory();
-            localAsRemote.setUrl( localRepoDir.toURL().toExternalForm() );
+            localAsRemote.setUrl( localRepoDir.toURI().toURL().toExternalForm() );
 
             model.addRepository( localAsRemote );
             model.addPluginRepository( localAsRemote );
@@ -396,11 +389,11 @@ public class ProjectTool
 
             if ( skipUnitTests )
             {
-                List plugins = build.getPlugins();
+                List<Plugin> plugins = build.getPlugins();
                 Plugin plugin = null;
-                for ( Iterator iter = plugins.iterator(); iter.hasNext(); )
+                for ( Iterator<Plugin> iter = plugins.iterator(); iter.hasNext(); )
                 {
-                    Plugin plug = (Plugin) iter.next();
+                    Plugin plug = iter.next();
 
                     if ( "maven-surefire-plugin".equals( plug.getArtifactId() ) )
                     {
@@ -442,8 +435,8 @@ public class ProjectTool
             IOUtil.close( writer );
         }
 
-        return new PomInfo( output, model.getGroupId(), model.getArtifactId(), model.getVersion(),
-                            model.getBuild().getDirectory(), model.getBuild().getOutputDirectory(), finalName );
+        return new PomInfo( output, model.getGroupId(), model.getArtifactId(), model.getVersion(), model.getBuild().getDirectory(), model.getBuild().getOutputDirectory(),
+                finalName );
     }
 
     static final class PomInfo
@@ -462,8 +455,7 @@ public class ProjectTool
 
         private final String buildOutputDirectory;
 
-        PomInfo( File pomFile, String groupId, String artifactId, String version, String buildDirectory,
-                 String buildOutputDirectory, String finalName )
+        PomInfo(File pomFile, String groupId, String artifactId, String version, String buildDirectory, String buildOutputDirectory, String finalName)
         {
             this.pomFile = pomFile;
             this.groupId = groupId;
@@ -496,8 +488,7 @@ public class ProjectTool
 
         File getBuildLogFile()
         {
-            return new File( buildDirectory + "/test-build-logs/" + groupId + "_" + artifactId + "_" + version
-                + ".build.log" );
+            return new File( buildDirectory + "/test-build-logs/" + groupId + "_" + artifactId + "_" + version + ".build.log" );
         }
     }
 }

@@ -20,13 +20,14 @@ package de.andrena.tools.macker.plugin.classes;
  */
 
 import java.security.InvalidParameterException;
+
 /**
  * Test class in the "classpath" with a bad reference.
  */
 public class ForbiddenReference
 {
     public void calculate()
-        throws InvalidParameterException
+            throws InvalidParameterException
     {
         throw new InvalidParameterException( "what a bad guy" );
     }

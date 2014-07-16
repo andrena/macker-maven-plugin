@@ -36,8 +36,8 @@ import org.apache.commons.io.IOUtils;
 public class CommandLineFile
 {
 
-    public static void main( String[] args )
-        throws Exception
+    public static void main(String[] args)
+            throws Exception
     {
         if ( args.length == 0 || args.length > 2 )
         {
@@ -46,10 +46,11 @@ public class CommandLineFile
         }
 
         String className = args[0];
-        Class clazz = Class.forName( className );
-        Method main = clazz.getMethod( "main", new Class[] { String[].class } );
+        Class<?> clazz = Class.forName( className );
+        Method main = clazz.getMethod( "main", new Class[]
+        { String[].class } );
 
-        List/*<String>*/lines = new ArrayList/*<String>*/();
+        List<String> lines = new ArrayList<String>();
         if ( args.length == 2 )
         {
             Reader in = new InputStreamReader( new FileInputStream( args[1] ), "UTF-8" );
@@ -65,7 +66,8 @@ public class CommandLineFile
 
         try
         {
-            main.invoke( null, new Object[] { lines.toArray( new String[lines.size()] ) } );
+            main.invoke( null, new Object[]
+            { lines.toArray( new String[lines.size()] ) } );
         }
         catch ( InvocationTargetException ex )
         {

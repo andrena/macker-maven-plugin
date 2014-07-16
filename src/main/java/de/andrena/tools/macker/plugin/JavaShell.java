@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.plexus.util.cli.shell.Shell;
+
 /**
  * Special version of Plexus CLI Shell that forks to a JVM immediately without
  * creating a command line.  It uses the current java.home setting to find the java
@@ -31,7 +32,7 @@ import org.codehaus.plexus.util.cli.shell.Shell;
  * @author <a href="http://www.code-cop.org/">Peter Kofler</a>
  */
 public class JavaShell
-    extends Shell
+        extends Shell
 {
 
     public JavaShell()
@@ -39,12 +40,12 @@ public class JavaShell
         this( new String[0] );
     }
 
-    public JavaShell( List vmArgs )
+    public JavaShell(List<String> vmArgs)
     {
-        this( (String[]) vmArgs.toArray( new String[vmArgs.size()] ) );
+        this( vmArgs.toArray( new String[vmArgs.size()] ) );
     }
 
-    public JavaShell( String[] vmArgs )
+    public JavaShell(String[] vmArgs)
     {
         String javaPath = System.getProperty( "java.home" ) + File.separator + "bin";
         setShellCommand( javaPath + File.separator + "java" );
@@ -53,9 +54,10 @@ public class JavaShell
         setShellArgs( vmArgs );
     }
 
-    protected List getRawCommandLine( String executable, String[] arguments )
+    @Override
+    protected List<String> getRawCommandLine(String executable, String[] arguments)
     {
-        List commandLine = new ArrayList();
+        List<String> commandLine = new ArrayList<String>();
 
         if ( executable != null )
         {

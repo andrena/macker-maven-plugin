@@ -28,7 +28,7 @@ public class BadDatabaseClass
 {
 
     public void workOnDatabase()
-        throws SQLException
+            throws SQLException
     {
         throw new SQLException( "dummy" );
     }
