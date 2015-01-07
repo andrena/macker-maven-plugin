@@ -9,7 +9,7 @@
 
 	<groupId>de.andrena.tools.macker</groupId>
 	<artifactId>macker-maven-plugin</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.3-tolina-2</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>Macker Maven Plugin</name>
@@ -121,7 +121,7 @@
 		<dependency>
 			<groupId>de.andrena.tools.macker</groupId>
 			<artifactId>macker</artifactId>
-			<version>1.0.3-SNAPSHOT</version>
+			<version>1.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
@@ -320,4 +320,17 @@
 			</plugin>
 		</plugins>
 	</reporting>
+	
+		<distributionManagement>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>http://srvrepo.tolina.local/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://srvrepo.tolina.local/nexus/content/repositories/releases</url>
+		</repository>
+	</distributionManagement>
 </project>
