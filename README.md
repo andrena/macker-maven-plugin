@@ -1,4 +1,4 @@
-[![Build Status](https://buildhive.cloudbees.com/job/andrena/job/macker-maven-plugin/badge/icon)](https://buildhive.cloudbees.com/job/andrena/job/macker-maven-plugin/)
+[![wercker status](https://app.wercker.com/status/640d324b8a6be5df8324df790afbd77f/m "wercker status")](https://app.wercker.com/project/bykey/640d324b8a6be5df8324df790afbd77f)
 
 This is a [fork from Codehaus](http://mojo.codehaus.org/macker-maven-plugin/) ([source](http://svn.codehaus.org/mojo/trunk/sandbox/macker-maven-plugin/)), who initiated and developed this project.
 
