@@ -1,8 +1,6 @@
 language: java
 deploy:
   provider: releases
-  api_key:
-    secure: DPX37ILy8iAnS9AdUvONDchhlfaAuh9r3IAqHhwUWBlFjU0Qp+xuUIgfrlZNcrQYAnDVWo3bqplyR/RqerV4qy2Aq8WiBzI3wqC5AUP3BvIUMbk6FxZpOFT+/+3Z7dyEGBeRww3+oyQ/q/Vfk2eKlMF2BcaQvkbdfr05RlbgyPnbEn8e/CSDdPSuoigV4s2RJiiGt0YQKXdTIrpFNARWFLgoGbqIXjlgCEaEFLBER7jsNWJN4t7TWe4y1iahdYMjq9mOT1eXrmr7BMsiPzL+HE3sZwU8f3eBaspppI/4mZ26OjCTXI/TC6AxeRgjt6QhmHGwHgc2TNDAZsj19ESfa7VWwgAlzHFwNOj8LPhV6aowW6DQsAorVtWQ9dmPweBpiVKRANlbd0BTFDkWvBIWDmB92zjnpxGhq0/YI5JNtq0jJiZIaHSdiKGLQ8LsEWPirj6AFX+rZYSjYeoG27/F69Ldgx0kuaeSNSAQbqvBPl7PvV5avU4k1SUS4K/pRXRAcAqux/NB/dDDKT9xjx0/8OhoNaqLkbNVMOh4746zI0tagt5vdDR+61X2RN8Lqbi85skjMJu0d5Gk++cqM+fCt3Yk67Bn9SlD3/mxJQU/PN1paD47ttvpWXW+ehEYAV0SIebo9OqkkeQBV5uryls75XcrR4+63OMmlV2tbTLciUU=
   file: target/*.jar
   on:
     repo: arxes-tolina/macker-maven-plugin
