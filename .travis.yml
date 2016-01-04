@@ -4,6 +4,7 @@ deploy:
   api_key:
     secure: ${apikey}
   file: target/*.jar
+  file_glob: true
   on:
     tags: true
     repo: arxes-tolina/macker-maven-plugin
