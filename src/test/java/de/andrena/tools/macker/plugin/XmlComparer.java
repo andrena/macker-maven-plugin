@@ -25,24 +25,24 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import junit.framework.Assert;
-
 import org.custommonkey.xmlunit.DetailedDiff;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.Difference;
+import org.junit.Assert;
 import org.xml.sax.SAXException;
+
 /**
  * Uses XmlUnit to compare created Macker result XML reports against the expected ones.
  * @author <a href="http://www.code-cop.org/">Peter Kofler</a>
  */
 public class XmlComparer
-    extends Assert
+        extends Assert
 {
 
     private static final String DEFAULT_DATE = "Sun Apr 25 01:23:20 CEST 2010";
     private final String controlFileFolder;
 
-    public XmlComparer( String folder )
+    public XmlComparer(String folder)
     {
         controlFileFolder = folder;
     }
@@ -60,23 +60,23 @@ public class XmlComparer
     //  assertEquals(controlText, generatedText );
     //}
 
-    public void compareXml( String controlFile, File generatedFile )
-        throws SAXException, IOException
+    public void compareXml(String controlFile, File generatedFile)
+            throws SAXException, IOException
     {
         Diff xmlDiff = new Diff( new FileReader( controlFileFolder + controlFile ), new FileReader( generatedFile ) );
         DetailedDiff detailedDiff = new DetailedDiff( xmlDiff );
-        List/*<Difference>*/differences = detailedDiff.getAllDifferences();
+        List<Difference> differences = detailedDiff.getAllDifferences();
         if ( differences.size() == 1 )
         {
-            Difference diff = (Difference) differences.get( 0 ); // timestamp
+            Difference diff = differences.get( 0 ); // timestamp
             assertEquals( DEFAULT_DATE, diff.getControlNodeDetail().getValue() );
         }
         else
         {
             StringBuffer buf = new StringBuffer();
-            for ( Iterator/*<Difference>*/i = differences.iterator(); i.hasNext(); )
+            for ( Iterator<Difference> i = differences.iterator(); i.hasNext(); )
             {
-                Difference diff = (Difference) i.next();
+                Difference diff = i.next();
                 if ( diff.toString().startsWith( "Expected text value 'Sun Apr 25 01:23:20 CEST 2010' but was" ) )
                 {
                     continue;

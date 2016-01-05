@@ -19,17 +19,18 @@ package de.andrena.tools.macker.plugin.stubs;
  * under the License.
  */
 
-import org.apache.maven.plugin.testing.stubs.ArtifactStub;
-
 import java.io.File;
 import java.util.ArrayList;
+
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.plugin.testing.stubs.ArtifactStub;
 
 /**
  * An artifact list stub which populates itself using the java.class.path.
  * @author <a href="http://www.code-cop.org/">Peter Kofler</a>
  */
 public class ClasspathArtifactListStub
-    extends ArrayList/*<Artifact>*/
+        extends ArrayList<Artifact>
 {
     public ClasspathArtifactListStub()
     {
@@ -39,6 +40,7 @@ public class ClasspathArtifactListStub
             final String classPathElement = elements[i];
             add( new ArtifactStub()
             {
+                @Override
                 public File getFile()
                 {
                     return new File( classPathElement );

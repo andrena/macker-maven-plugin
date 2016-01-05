@@ -1,4 +1,4 @@
-package de.andrena.tools.macker.plugin.forked;
+package de.andrena.tools.macker.plugin;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,26 +19,25 @@ package de.andrena.tools.macker.plugin.forked;
  * under the License.
  */
 
-public class SetArgs
+
+/**
+ * Runs Macker against the compiled classes of the project.
+ *
+ * @goal macker-no-fork
+ * @phase compile
+ * @requiresDependencyResolution compile
+ * @requiresProject
+ * @author <a href="http://www.codehaus.org/~wfay/">Wayne Fay</a>
+ * @author <a href="http://people.apache.org/~bellingard/">Fabrice
+ *         Bellingard</a>
+ * @author <a href="http://www.code-cop.org/">Peter Kofler</a>
+ */
+public class MackerNoForkMojo
+        extends AbstractMackerMojo
 {
-    private static String[] lastArgs;
-
-    public static String[] getLastArgs()
+    @Override
+    protected Macker createMackerImplementation()
     {
-        return lastArgs;
-    }
-
-    public static void reset()
-    {
-        lastArgs = null;
-    }
-
-    public static void main(String[] args)
-    {
-        lastArgs = args;
-        if ( args.length > 0 && args[0].equals( "uoex" ) )
-        {
-            throw new UnsupportedOperationException( "you asked for it" );
-        }
+        return new LinkedMacker();
     }
 }

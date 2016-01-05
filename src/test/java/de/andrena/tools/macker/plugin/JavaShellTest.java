@@ -28,29 +28,29 @@ import org.codehaus.plexus.util.cli.CommandLineUtils;
 import org.codehaus.plexus.util.cli.Commandline;
 import org.codehaus.plexus.util.cli.CommandLineUtils.StringStreamConsumer;
 
-
 import de.andrena.tools.macker.plugin.JavaShell;
 import de.andrena.tools.macker.plugin.forked.ExitArgs;
 
 public class JavaShellTest
-    extends TestCase
+        extends TestCase
 {
     private String classPath;
     private static final String FORKED_CLASS = ExitArgs.class.getName();
 
-    public JavaShellTest( String name )
+    public JavaShellTest(String name)
     {
         super( name );
     }
 
-    protected void setUp() throws Exception
+    protected void setUp()
+            throws Exception
     {
         super.setUp();
         classPath = new File( "./target/test-classes" ).getCanonicalPath();
     }
 
-    private int execute( Commandline cl )
-        throws CommandLineException
+    private int execute(Commandline cl)
+            throws CommandLineException
     {
         StringStreamConsumer stdout = new StringStreamConsumer();
         StringStreamConsumer stderr = new StringStreamConsumer();
@@ -58,7 +58,7 @@ public class JavaShellTest
     }
 
     public void testDefaultShellCall()
-        throws CommandLineException
+            throws CommandLineException
     {
         Commandline cl = new Commandline();
         cl.setExecutable( "java" );
@@ -74,7 +74,7 @@ public class JavaShellTest
     }
 
     public void skip_testDefaultShellMaxArguments()
-        throws CommandLineException
+            throws CommandLineException
     {
         Commandline cl = new Commandline();
         cl.setExecutable( "java" );
@@ -92,9 +92,10 @@ public class JavaShellTest
     }
 
     public void testJavaShellCall()
-        throws CommandLineException
+            throws CommandLineException
     {
-        Commandline cl = new Commandline( new JavaShell( new String[] { "-cp", classPath } ) );
+        Commandline cl = new Commandline( new JavaShell( new String[]
+        { "-cp", classPath } ) );
         cl.setExecutable( FORKED_CLASS );
         cl.createArg().setValue( "oneArg" );
         cl.createArg().setValue( "2Arg" );
@@ -105,9 +106,10 @@ public class JavaShellTest
     }
 
     public void skip_testJavaShellMaxArguments()
-        throws CommandLineException
+            throws CommandLineException
     {
-        Commandline cl = new Commandline( new JavaShell( new String[] { "-cp", classPath } ) );
+        Commandline cl = new Commandline( new JavaShell( new String[]
+        { "-cp", classPath } ) );
         cl.setExecutable( FORKED_CLASS );
         final int max = 3261; // win XP approx. 32kb
         for ( int i = 0; i < max; i++ )

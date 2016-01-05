@@ -19,15 +19,6 @@ package de.andrena.tools.macker.plugin.it;
  * under the License.
  */
 
-import org.apache.maven.plugin.testing.AbstractMojoTestCase;
-import org.apache.maven.project.MavenProject;
-import org.apache.maven.shared.invoker.InvocationRequest;
-import org.apache.maven.shared.invoker.InvocationResult;
-import org.apache.maven.shared.test.plugin.BuildTool;
-import org.apache.maven.shared.test.plugin.PluginTestTool;
-import org.apache.maven.shared.test.plugin.ProjectTool;
-import org.apache.maven.shared.test.plugin.TestToolsException;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -36,6 +27,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.maven.plugin.testing.AbstractMojoTestCase;
+import org.apache.maven.project.MavenProject;
+import org.apache.maven.shared.invoker.InvocationRequest;
+import org.apache.maven.shared.invoker.InvocationResult;
+import org.apache.maven.shared.test.plugin.BuildTool;
+import org.apache.maven.shared.test.plugin.PluginTestTool;
+import org.apache.maven.shared.test.plugin.ProjectTool;
+import org.apache.maven.shared.test.plugin.TestToolsException;
 import org.codehaus.classworlds.ClassRealm;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.util.FileUtils;
@@ -52,7 +51,7 @@ import de.andrena.tools.macker.plugin.XmlComparer;
  * @author <a href="http://www.code-cop.org/">Peter Kofler</a>
  */
 public abstract class AbstractMackerPluginITCase
-    extends AbstractMojoTestCase
+        extends AbstractMojoTestCase
 {
 
     private BuildTool buildTool;
@@ -86,13 +85,13 @@ public abstract class AbstractMackerPluginITCase
     /**
      * @see org.codehaus.plexus.PlexusTestCase#setUp()
      */
+    @Override
     protected void setUp()
-        throws Exception
+            throws Exception
     {
         if ( !installed )
         {
-            System.out.println( "*** Running integation test builds; output will be directed to: "
-                    + BUILD_OUTPUT_DIRECTORY );
+            System.out.println( "*** Running integation test builds; output will be directed to: " + BUILD_OUTPUT_DIRECTORY );
         }
         super.setUp();
 
@@ -118,13 +117,12 @@ public abstract class AbstractMackerPluginITCase
         }
         System.setProperty( "MAVEN_TERMINATE_CMD", "on" );
 
-        synchronized (AbstractMackerPluginITCase.class)
+        synchronized ( AbstractMackerPluginITCase.class )
         {
             if ( !installed )
             {
                 PluginTestTool pluginTestTool = (PluginTestTool) lookup( PluginTestTool.ROLE, "default" );
-                localRepositoryDirectory = pluginTestTool.preparePluginForUnitTestingWithMavenBuilds( pomFile, VERSION,
-                        localRepositoryDirectory );
+                localRepositoryDirectory = pluginTestTool.preparePluginForUnitTestingWithMavenBuilds( pomFile, VERSION, localRepositoryDirectory );
                 System.out.println( "*** Installed test-version of the Macker plugin to: " + localRepositoryDirectory );
                 installed = true;
             }
@@ -135,16 +133,17 @@ public abstract class AbstractMackerPluginITCase
     /**
      * @see org.codehaus.plexus.PlexusTestCase#tearDown()
      */
+    @Override
     protected void tearDown()
-        throws Exception
+            throws Exception
     {
         super.tearDown();
 
-        List/*<PlexusContainer>*/ containers = new ArrayList/*<PlexusContainer>*/();
+        List<PlexusContainer> containers = new ArrayList<PlexusContainer>();
         containers.add( getContainer() );
-        for ( Iterator iter = containers.iterator(); iter.hasNext(); )
+        for ( Iterator<PlexusContainer> iter = containers.iterator(); iter.hasNext(); )
         {
-            PlexusContainer cont = (PlexusContainer) iter.next();
+            PlexusContainer cont = iter.next();
             if ( cont != null )
             {
                 cont.dispose();
@@ -163,8 +162,8 @@ public abstract class AbstractMackerPluginITCase
      * @param goalList comma separated list of goals to execute
      * @throws Exception any exception generated during test
      */
-    protected void testProject( String projectName, String goalList )
-        throws Exception
+    protected void testProject(String projectName, String goalList)
+            throws Exception
     {
         File baseDir = getTestFile( "target/test-classes/it/" + projectName );
         testProject( baseDir, new Properties(), goalList );
@@ -177,13 +176,13 @@ public abstract class AbstractMackerPluginITCase
      * @param goalList comma separated list of goals to execute
      * @throws Exception any exception generated during test
      */
-    protected void testProject( File baseDir, Properties properties, String goalList )
-        throws Exception
+    protected void testProject(File baseDir, Properties properties, String goalList)
+            throws Exception
     {
         File pom = new File( baseDir, "pom.xml" );
 
         String[] goal = goalList.split( "," );
-        List/*<String>*/ goals = new ArrayList/*<String>*/();
+        List<String> goals = new ArrayList<String>();
         for ( int i = 0; i < goal.length; i++ )
         {
             goals.add( goal[i] );
@@ -196,8 +195,8 @@ public abstract class AbstractMackerPluginITCase
         compareMackerOutput( baseDir, projectOutputDir );
     }
 
-    private void executeMaven( File pom, Properties properties, List goals, boolean switchLocalRepo )
-         throws TestToolsException
+    private void executeMaven(File pom, Properties properties, List<String> goals, boolean switchLocalRepo)
+            throws TestToolsException
     {
         System.out.println( "  Building " + pom.getParentFile().getName() );
 
@@ -225,7 +224,7 @@ public abstract class AbstractMackerPluginITCase
             buildLog = new File( BUILD_OUTPUT_DIRECTORY, "unknown.build.log" );
         }
 
-        if (properties == null)
+        if ( properties == null )
         {
             properties = new Properties();
         }
@@ -247,19 +246,18 @@ public abstract class AbstractMackerPluginITCase
             String buildLogUrl = buildLog.getAbsolutePath();
             try
             {
-                buildLogUrl = buildLog.toURL().toExternalForm();
+                buildLogUrl = buildLog.toURI().toURL().toExternalForm();
             }
             catch ( MalformedURLException e )
             {
             }
-            throw new TestToolsException( "Failed to execute build.\nPOM: " + pom + "\nGoals: "
-                    + StringUtils.join( goals.iterator(), ", " ) + "\nExit Code: " + result.getExitCode() + "\nError: "
-                    + result.getExecutionException() + "\nBuild Log: " + buildLogUrl + "\n", result.getExecutionException() );
+            throw new TestToolsException( "Failed to execute build.\nPOM: " + pom + "\nGoals: " + StringUtils.join( goals.iterator(), ", " ) + "\nExit Code: "
+                    + result.getExitCode() + "\nError: " + result.getExecutionException() + "\nBuild Log: " + buildLogUrl + "\n", result.getExecutionException() );
         }
     }
 
-    private MavenProject readProject( File pom )
-        throws TestToolsException
+    private MavenProject readProject(File pom)
+            throws TestToolsException
     {
         return projectTool.readProject( pom, localRepositoryDirectory );
     }
@@ -268,12 +266,11 @@ public abstract class AbstractMackerPluginITCase
      * @param baseDir the base directory of the project
      * @param projectOutputDir the directory where the plugin will write the output files.
      */
-    private void compareMackerOutput( File baseDir, File projectOutputDir )
+    private void compareMackerOutput(File baseDir, File projectOutputDir)
             throws IOException, SAXException
     {
         File generatedFile = new File( projectOutputDir, "macker-out.xml" );
         assertTrue( "macker-out was not created", FileUtils.fileExists( generatedFile.getAbsolutePath() ) );
-        new XmlComparer( baseDir.toString() + File.separator ).compareXml( EXPECTED_DIRECTORY_NAME + File.separator
-                + "macker-out.xml", generatedFile );
+        new XmlComparer( baseDir.toString() + File.separator ).compareXml( EXPECTED_DIRECTORY_NAME + File.separator + "macker-out.xml", generatedFile );
     }
 }

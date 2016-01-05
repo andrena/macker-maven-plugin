@@ -28,7 +28,7 @@ import org.apache.maven.plugin.testing.stubs.DefaultArtifactHandlerStub;
  * @author <a href="http://www.code-cop.org/">Peter Kofler</a>
  */
 public class JavaArtifactHandlerArtifactStub
-    extends ArtifactStub
+        extends ArtifactStub
 {
     private ArtifactHandler artifactHandlerStub;
 
@@ -44,7 +44,7 @@ public class JavaArtifactHandlerArtifactStub
         return artifactHandlerStub;
     }
 
-    public void setArtifactHandler( ArtifactHandler artifactHandler )
+    public void setArtifactHandler(ArtifactHandler artifactHandler)
     {
         artifactHandlerStub = artifactHandler;
     }

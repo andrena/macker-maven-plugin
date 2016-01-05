@@ -1,4 +1,4 @@
-package de.andrena.tools.macker.plugin.forked;
+package de.andrena.tools.macker.plugin;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -19,26 +19,13 @@ package de.andrena.tools.macker.plugin.forked;
  * under the License.
  */
 
-public class SetArgs
+
+public class MackerNoForkMojoTest
+        extends AbstractMackerMojoTestCase
 {
-    private static String[] lastArgs;
-
-    public static String[] getLastArgs()
+    @Override
+    protected String getMojoName()
     {
-        return lastArgs;
-    }
-
-    public static void reset()
-    {
-        lastArgs = null;
-    }
-
-    public static void main(String[] args)
-    {
-        lastArgs = args;
-        if ( args.length > 0 && args[0].equals( "uoex" ) )
-        {
-            throw new UnsupportedOperationException( "you asked for it" );
-        }
+        return "macker-no-fork";
     }
 }

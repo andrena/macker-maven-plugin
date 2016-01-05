@@ -59,8 +59,8 @@ public class CommandLineBuilder
      * be reused to create many command lines.
      * @throws IOException if problems with creating temporary file for storing command line occur
      */
-    public CommandLineBuilder( String name )
-        throws IOException
+    public CommandLineBuilder(String name)
+            throws IOException
     {
         commandLineFile = File.createTempFile( name + ".", ".cmdline" );
         commandLineFile.deleteOnExit();
@@ -75,8 +75,8 @@ public class CommandLineBuilder
      * @param arg command line argument to save
      * @throws IOException if problems with temporary file occur
      */
-    public void addArg( String arg )
-        throws IOException
+    public void addArg(String arg)
+            throws IOException
     {
         if ( arg == null )
         {
@@ -92,8 +92,8 @@ public class CommandLineBuilder
      * @param arg2 second command line argument to save
      * @throws IOException if problems with temporary file occur
      */
-    public void addArg( String arg1, String arg2 )
-        throws IOException
+    public void addArg(String arg1, String arg2)
+            throws IOException
     {
         addArg( arg1 );
         addArg( arg2 );
@@ -105,7 +105,7 @@ public class CommandLineBuilder
      * @throws IOException if problems with temporary file occur
      */
     public void saveArgs()
-        throws IOException
+            throws IOException
     {
         commandLineWriter.flush();
         commandLineWriter.close();
@@ -118,7 +118,7 @@ public class CommandLineBuilder
      * @return absolute path to the file with arguments
      */
     public String getCommandLineFile()
-        throws IOException
+            throws IOException
     {
         return commandLineFile.getCanonicalFile().getAbsolutePath();
     }

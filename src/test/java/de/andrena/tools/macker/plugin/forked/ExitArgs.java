@@ -24,7 +24,7 @@ package de.andrena.tools.macker.plugin.forked;
  */
 public class ExitArgs
 {
-    public static void main( String[] args )
+    public static void main(String[] args)
     {
         System.exit( args.length );
     }

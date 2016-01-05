@@ -19,14 +19,19 @@ package de.andrena.tools.macker.plugin;
  * under the License.
  */
 
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
-
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugin.logging.Log;
 
 /**
- * Abstraction of the Macker tool.  There is a linked and a forked implementation.
+ * Abstraction of the Macker tool. There is a linked and a forked
+ * implementation.
+ * 
  * @author <a href="http://www.code-cop.org/">Peter Kofler</a>
  */
 public interface Macker
@@ -34,38 +39,54 @@ public interface Macker
 
     /**
      * Add a class to be checked by Macker.
-     * @throws IOException if there's a problem reading a file
-     * @throws MojoExecutionException if there's a problem parsing a class
+     * 
+     * @throws IOException
+     *             if there's a problem reading a file
+     * @throws MojoExecutionException
+     *             if there's a problem parsing a class
      */
-    void addClass( File clazz )
-        throws IOException, MojoExecutionException;
+    void addClass(File clazz)
+            throws IOException, MojoExecutionException;
 
     /**
      * Add a rule file to be used by Macker.
-     * @throws IOException if there's a problem reading a file
-     * @throws MojoExecutionException if there's a problem parsing a rule file
+     * 
+     * @throws IOException
+     *             if there's a problem reading a file
+     * @throws MojoExecutionException
+     *             if there's a problem parsing a rule file
      */
-    void addRulesFile( File rule )
-        throws IOException, MojoExecutionException;
+    void addRulesFile(File rule)
+            throws IOException, MojoExecutionException;
 
     void check()
-        throws MojoExecutionException, MojoFailureException;
+            throws MojoExecutionException, MojoFailureException;
 
-    void setAngerThreshold( String anger );
+    void setAngerThreshold(String anger);
 
-    void setPrintMaxMessages( int maxMsg );
+    void setPrintMaxMessages(int maxMsg);
 
-    void setPrintThreshold( String print );
+    void setPrintThreshold(String print);
 
-    void setVariable( String name, String value );
+    void setVariable(String name, String value);
 
-    void setVerbose( boolean verbose );
+    void setVerbose(boolean verbose);
 
     /**
      * Set the XML report file to be used by Macker.
-     * @throws IOException if there's a problem with the report file
+     * 
+     * @throws IOException
+     *             if there's a problem with the report file
      */
-    void setXmlReportFile( File report )
-        throws IOException;
+    void setXmlReportFile(File report)
+            throws IOException;
+
+    void setLog(Log log);
+
+    void setMaxmem(String maxmem);
+
+    void setPluginClasspathList(List<Artifact> collectArtifactList);
+
+    void setQuiet(boolean quiet);
 
 }
